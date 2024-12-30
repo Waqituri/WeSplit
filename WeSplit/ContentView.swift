@@ -12,7 +12,7 @@ struct ContentView: View {
     @State private var numberOfPeople = 2
     @State private var tipPerecentage = 20
     @FocusState private var isFocused : Bool
-    let precentageAmount = [5, 10, 15, 20]
+    let precentageAmount = [0, 5, 10, 15, 20]
     var tipvalue : Double  {
         let people = Double(numberOfPeople + 2)
         let perecntage = Double(tipPerecentage)
@@ -28,6 +28,7 @@ struct ContentView: View {
                 Section{
                     TextField("Total amount : ", value: $amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD" )
                         .precision(.fractionLength(2)))
+                    .foregroundColor(tipPerecentage == 0 ? .red : .primary)
                     .focused($isFocused)
                     .keyboardType(.decimalPad)
                 }
